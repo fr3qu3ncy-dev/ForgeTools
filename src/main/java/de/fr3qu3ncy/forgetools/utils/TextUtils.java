@@ -1,4 +1,4 @@
-package utils;
+package de.fr3qu3ncy.forgetools.utils;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
