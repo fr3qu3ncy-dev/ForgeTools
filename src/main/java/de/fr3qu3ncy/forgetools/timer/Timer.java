@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -28,13 +29,18 @@ public class Timer {
     }
 
     public static void scheduleRepeatingTask(int delay, int interval, int iterations,
-                                             Consumer<RepeatingTask> action) {
-        RepeatingTask task = new RepeatingTask(delay, interval, iterations, action, null);
+                                             Consumer<RepeatingTask> action, Runnable postAction) {
+        RepeatingTask task = new RepeatingTask(delay, interval, iterations, action, postAction);
         timerTasks.add(task);
     }
 
-    public static void scheduleRepeatingTask(int delay, int interval, int iterations) {
-        scheduleRepeatingTask(delay, interval, iterations, null);
+    public static void scheduleRepeatingTask(int delay, int interval, int iterations, Consumer<RepeatingTask> action) {
+        scheduleRepeatingTask(delay, interval, iterations, action, null);
+    }
+
+    public static void scheduleConditionalTask(Callable<Boolean> condition, Runnable action) {
+        ConditionalTask task = new ConditionalTask(condition, action);
+        timerTasks.add(task);
     }
 
     @SubscribeEvent
