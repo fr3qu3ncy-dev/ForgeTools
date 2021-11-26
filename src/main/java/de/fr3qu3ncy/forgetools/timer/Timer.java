@@ -47,6 +47,8 @@ public class Timer {
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.side != LogicalSide.SERVER || event.phase != TickEvent.Phase.START) return;
         timerTasks.forEach(TimerTask::passTick);
-        timerTasks = timerTasks.stream().filter(task -> !task.isCancelled()).collect(Collectors.toList());
+        timerTasks = timerTasks.stream()
+                .filter(task -> !task.isCancelled())
+                .collect(Collectors.toList());
     }
 }

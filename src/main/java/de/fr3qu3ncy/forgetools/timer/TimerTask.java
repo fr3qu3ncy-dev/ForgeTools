@@ -54,12 +54,13 @@ public abstract class TimerTask {
 
     public abstract boolean isDone();
 
-    public void runTask() {
+    private void runTask() {
         run();
         currentTicks = 0;
         currentIterations++;
 
         if (isDone() || isCancelled()) {
+            isCancelled = true;
             if (postAction != null) postAction.run();
         }
     }
