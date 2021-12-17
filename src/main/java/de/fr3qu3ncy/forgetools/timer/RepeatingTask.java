@@ -43,6 +43,6 @@ public class RepeatingTask extends TimerTask {
 
     @Override
     public boolean isDone() {
-        return getCurrentIterations() >= iterations;
+        return getCurrentIterations() >= iterations && iterations != -1;
     }
 }
