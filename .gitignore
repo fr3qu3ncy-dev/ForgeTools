@@ -1,0 +1,9 @@
+/.gradle/
+/.idea/
+/build/
+1.17/.gradle/
+1.17/.idea/
+1.17/build/
+core/.gradle/
+core/.idea/
+core/build/
